@@ -58,7 +58,8 @@ class Grid
   # GRID MANIPULATION
   #################################################
 
-  # Grid rows expansion.
+  ###### Grid rows expansion
+
   #
   #
   # @overload add_row(n_times, from_row)
@@ -129,7 +130,8 @@ class Grid
     end
   end
 
-  # Grid rows collapse.
+  ###### Grid rows collapse
+
   #
   #
   # @overload del_row(n_times, from_row)
@@ -180,7 +182,8 @@ class Grid
     end
   end
 
-  # Grid columns expansion.
+  ###### Grid columns expansion
+
   #
   #
   # @overload add_col(n_times, from_col)
@@ -228,17 +231,25 @@ class Grid
     case args.size
     when 2..4
       raise ArgumentError, 'Argument type(s) is not Integer' unless args.each { |a| a.is_a? Integer }
-      raise ArgumentError, 'Argument(s) (: 1, 2, 3) cannot be negative Integer(s)' unless args.each_with_index { |a,i| a >= 0 && i < 3 }
+      raise ArgumentError, 'Argument(s) (: 1, 2, 3) cannot be negative Integer(s)'  unless args.each_with_index { |a,i| a.class != Array && ( a >= 0 && i < 3 ) }
       raise ArgumentError, 'Argument (: position) shall be in range [-1,0]' unless  args.size < 4 || (args.size == 4 && args[3].to_i.between?(-1,0))
    
       count = args.first.to_i
       position = args[1].to_i
-      val = args.size == 2 ? 0 : args[2].to_i
+      val = args.size == 2 ? 0 : args[2].class == Array ? args[2].to_a : args[2].to_i
       side = args.size == 3 ? 0 : args[3].to_i
       i = side == -1 ? 0 : 1
       position = position < @cols-1 ? position : @cols-1 # ensure upper limit if out-of-range
  
-      count.times { @grid.each { |row| row.insert(position+i, val) } }
+      count.times {
+        j = 0
+        @grid.each { |row|
+          if j < @cols
+            inj_val = val.class == Array ? val[j] : val
+            row.insert(position+i, inj_val)
+          end
+        }
+      }
  
       @cols += count
       @grid
@@ -247,7 +258,8 @@ class Grid
     end
   end
 
-  # Grid columns collapse.
+  ###### Grid columns collapse
+
   #
   #
   # @overload del_col(n_times, from_col)
@@ -303,13 +315,15 @@ class Grid
     end
   end
 
-  # single pick only atm
+  ###### Fast pickings
+
+  # NOTE: not overloading for now
   def pick_row(index)
     raise ArgumentError, 'Argument (: index) is out of range' unless  index < @rows
     @grid[index]
   end
 
-  # single pick only atm
+  # NOTE: not overloading for now
   def pick_col(index)
     raise ArgumentError, 'Argument (: index) is out of range' unless  index < @cols
     buf = []
@@ -319,11 +333,40 @@ class Grid
     buf
   end
 
-  # @overload inject_row(from_array, at_position)
-  # @overload inject_row(from_array, at_position, n_times)
-  def inject_row(*args)
-    row = args.first.to_a
+
+  ###### Injection aliases
+
+  # WARN: Injections will consider the passed index as the very first position to inject,
+  # while using add_row or add_col you will always access the position after or before the given index.
+  #
+  # Consequence: use inject_row / inject_col when you need to start overwriting a precise index,
+  # use add_row / add_col when you need to perform generic additions right after / before an index.
+  #
+  # You have been warned.
+
+  # NOTE: not overloading for now, fixed mandatory arguments number
+  # WARN: when using inject_*, you are forced to indicate a direction (0: right, -1: left)
+
+  def inject_row(n_times, from_row, src_array, direction)
+    case direction
+    when 0
+      add_row(1, from_row, src_array, -1)
+      add_row(n_times-1, from_row, src_array, 0) unless n_times-1 > 0
+    when -1
+      add_row(1, from_row, src_array, 0)
+      add_row(n_times-1, from_row, src_array, -1) unless n_times-1 > 0
+    else
+      raise ArgumentError, 'Argument number (#{args.size}) is wrong'
+    end
   end
+
+  # NOTE: not overloading for now
+  def inject_col(n_times, from_col, src_array, direction)
+    add_col(n_times, from_col, src_array, direction)
+  end
+
+  ###### 
+
 
   # @overload replace_row(with_array, at_position)
   def replace_row(*args)

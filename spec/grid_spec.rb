@@ -117,6 +117,14 @@ describe Grid do
       end
 
     end
+    describe 'should add n cols at given position (after/before)' do
+      it 'can add 1 col  to the right of index 0' do
+        expect(@g.add_col(1, 0, 0)).to eql [[1, 0, 2], [3, 0, 4]]
+      end
+      it 'can add 3 cols to the left  of index 1' do
+        expect(@g.add_col(3, 1, 0, -1)).to eql [[1, 0, 0, 0, 2], [3, 0, 0, 0, 4]]
+      end
+    end
     it 'should add arrays if given in input in place of an init_value (size does not matter)' do
       test = [[8], [6, 6, 6], [6, 9], [7, 7, 7, 7]]
       expect(@g.add_row(1, 1, test[0])).to eql [[1, 2], [3, 4], [8]]
@@ -177,9 +185,10 @@ describe Grid do
       expect(@g.del_col(100, 2, -1)).to eql [[0, 0],[5, 0]]
 
     end
-    it 'should keep on coding from' do
-      #p @g.grid
-      expect(@g.inject_row(@g.grid.first)).to match_array [1, 2]
+    it 'injection aliases should work' do
+      test = [[6, 6], [9, 9]]
+      expect(@g.inject_row(1, 0, test[0], 0)).to eql [[6, 6], [1, 2], [3, 4]]
+      #expect(@g.inject_col(1, 0, test[1], 0)).to eql [[6, 6], [1, 2], [3, 4]]
     end
   end
   describe 'access' do
