@@ -303,6 +303,21 @@ class Grid
     end
   end
 
+  # single pick only atm
+  def pick_row(index)
+    raise ArgumentError, 'Argument (: index) is out of range' unless  index < @rows
+    @grid[index]
+  end
+
+  # single pick only atm
+  def pick_col(index)
+    raise ArgumentError, 'Argument (: index) is out of range' unless  index < @cols
+    buf = []
+    @grid.each { |row| 
+      buf << row[index]
+    }
+    buf
+  end
 
   # @overload inject_row(from_array, at_position)
   # @overload inject_row(from_array, at_position, n_times)

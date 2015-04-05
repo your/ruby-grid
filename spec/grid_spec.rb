@@ -57,7 +57,7 @@ describe Grid do
                                               [9, 9]]
     end
   end
-  describe 'Grid manipulation' do
+  describe 'manipulation' do
     before :each do
       @g.rows = 2
       @g.cols = 2
@@ -146,29 +146,15 @@ describe Grid do
       @g.cols = 2
       @g.grid = [[0, 0],
                  [1, 5]]
-      expect(@g.add_col(0, 0)).to match_array         [[0, 0],
-                                                       [1, 5]]
 
-      expect(@g.add_col(1, 0, 0, -1)).to match_array  [[0, 0, 0],
-                                                       [0, 1, 5]]
-
-      expect(@g.add_col(1, 1, 0, -1)).to match_array  [[0, 0, 0, 0],
-                                                       [0, 0, 1, 5]]
-
-      expect(@g.add_col(2, 1, 9, -1)).to match_array  [[0, 9, 9, 0, 0, 0],
-                                                       [0, 9, 9, 0, 1, 5]]
-
-      expect(@g.add_col(2, 5, 3, 0)).to match_array   [[0, 9, 9, 0, 0, 0, 3, 3],
-                                                       [0, 9, 9, 0, 1, 5, 3, 3]]
-
-      expect(@g.add_col(1, 6)).to match_array         [[0, 9, 9, 0, 0, 0, 3, 0, 3],
-                                                       [0, 9, 9, 0, 1, 5, 3, 0, 3]]
-
-      expect(@g.add_col(2, 6, -1)).to match_array     [[0, 9, 9, 0, 0, 0, 3, -1, -1, 0, 3],
-                                                       [0, 9, 9, 0, 1, 5, 3, -1, -1, 0, 3]]
- 
-      expect(@g.add_col(1, 100)).to match_array       [[0, 9, 9, 0, 0, 0, 3, -1, -1, 0, 3, 0],
-                                                       [0, 9, 9, 0, 1, 5, 3, -1, -1, 0, 3, 0]]          
+      expect(@g.add_col(0, 0)).to eql [[0, 0],[1, 5]]
+      expect(@g.add_col(1, 0, 0, -1)).to eql [[0, 0, 0],[0, 1, 5]]
+      expect(@g.add_col(1, 1, 0, -1)).to eql [[0, 0, 0, 0], [0, 0, 1, 5]]
+      expect(@g.add_col(2, 1, 9, -1)).to eql [[0, 9, 9, 0, 0, 0], [0, 9, 9, 0, 1, 5]]
+      expect(@g.add_col(2, 5, 3, 0)).to eql [[0, 9, 9, 0, 0, 0, 3, 3], [0, 9, 9, 0, 1, 5, 3, 3]]
+      expect(@g.add_col(1, 6)).to eql [[0, 9, 9, 0, 0, 0, 3, 0, 3], [0, 9, 9, 0, 1, 5, 3, 0, 3]]
+      expect(@g.add_col(2, 6, -1)).to eql [[0, 9, 9, 0, 0, 0, 3, -1, -1, 0, 3], [0, 9, 9, 0, 1, 5, 3, -1, -1, 0, 3]]
+      expect(@g.add_col(1, 100)).to eql [[0, 9, 9, 0, 0, 0, 3, -1, -1, 0, 3, 0], [0, 9, 9, 0, 1, 5, 3, -1, -1, 0, 3, 0]]          
       
     end
     it 'should delete n cols from given position' do
@@ -177,35 +163,47 @@ describe Grid do
       @g.grid = [[0, 9, 9, 0, 0, 0, 3, -1, -1, 0, 3, 0],
                  [0, 9, 9, 0, 1, 5, 3, -1, -1, 0, 3, 0]]  
 
-      expect(@g.del_col(1, 100)).to match_array       [[0, 9, 9, 0, 0, 0, 3, -1, -1, 0, 3, 0],
-                                                       [0, 9, 9, 0, 1, 5, 3, -1, -1, 0, 3, 0]] 
-
-      expect(@g.del_col(1, 1)).to match_array         [[0, 9, 0, 0, 0, 3, -1, -1, 0, 3, 0],
-                                                       [0, 9, 0, 1, 5, 3, -1, -1, 0, 3, 0]]
-
-      expect(@g.del_col(100, 1)).to match_array       [[0], [0]]
+      expect(@g.del_col(1, 100)).to eql [[0, 9, 9, 0, 0, 0, 3, -1, -1, 0, 3, 0], [0, 9, 9, 0, 1, 5, 3, -1, -1, 0, 3, 0]] 
+      expect(@g.del_col(1, 1)).to eql [[0, 9, 0, 0, 0, 3, -1, -1, 0, 3, 0], [0, 9, 0, 1, 5, 3, -1, -1, 0, 3, 0]]
+      expect(@g.del_col(100, 1)).to eql [[0], [0]]
 
       @g.cols = 10
       @g.grid = [[0, 9, 0, 0, 0, 3, -1, -1, 0, 3],
                  [0, 9, 0, 1, 5, 3, -1, -1, 0, 3]]
 
-      expect(@g.del_col(2, 1)).to match_array         [[0, 0, 0, 3, -1, -1, 0, 3],
-                                                       [0, 1, 5, 3, -1, -1, 0, 3]]
-
-      expect(@g.del_col(2, 1, -1)).to match_array     [[0, 3, -1, -1, 0, 3],
-                                                       [5, 3, -1, -1, 0, 3]]
-
-      expect(@g.del_col(3, 3, -1)).to match_array     [[0, 0, 3],
-                                                       [5, 0, 3]]
-
-      expect(@g.del_col(100, 2, -1)).to match_array     [[0, 0],
-                                                         [5, 0]]
-
+      expect(@g.del_col(2, 1)).to eql [[0, 0, 0, 3, -1, -1, 0, 3], [0, 1, 5, 3, -1, -1, 0, 3]]
+      expect(@g.del_col(2, 1, -1)).to eql [[0, 3, -1, -1, 0, 3], [5, 3, -1, -1, 0, 3]]
+      expect(@g.del_col(3, 3, -1)).to eql [[0, 0, 3],[5, 0, 3]]
+      expect(@g.del_col(100, 2, -1)).to eql [[0, 0],[5, 0]]
 
     end
     it 'should keep on coding from' do
       #p @g.grid
       expect(@g.inject_row(@g.grid.first)).to match_array [1, 2]
+    end
+  end
+  describe 'access' do
+    before :each do
+      @g.rows = 2
+      @g.cols = 2
+      @g.grid = [[1, 2],
+                 [3, 4]]
+    end
+    describe 'pick rows' do
+      it 'should pick rows by index' do
+        expect(@g.pick_row(0)).to eql [1, 2]
+      end
+      it 'should raise exception if index is wrong' do
+        expect { @g.pick_row(10) }.to raise_error(ArgumentError)
+      end
+    end
+    describe 'pick cols' do
+      it 'should pick cols by index' do
+        expect(@g.pick_col(0)).to eql [1, 3]
+      end
+      it 'should raise exception if index is wrong' do
+        expect { @g.pick_col(10) }.to raise_error(ArgumentError)
+      end
     end
   end
 end
