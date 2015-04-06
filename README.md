@@ -1,6 +1,8 @@
 # ruby-grid
 Ruby library to work with matrices of integers. (INCOMPLETE)
 
+![gioconda](generated/gen_1428323262.png)
+
 ## Goal
 Mainly designed to manipualate "grids" of pixels that constitute an image.
 
