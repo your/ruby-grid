@@ -222,4 +222,19 @@ describe Grid do
       end
     end
   end
+  describe 'swapping' do
+    before :each do
+      @g.rows = 3
+      @g.cols = 3
+      @g.grid = [[1, 2, 3],
+                 [4, 5, 6],
+                 [7, 8, 9]]
+    end
+    it 'should swap 2 rows' do 
+      expect(@g.swap_rows(0, 1)).to eql [[4, 5, 6], [1, 2, 3], [7, 8, 9]]  
+    end 
+    it 'should swap 2 cols' do 
+      expect(@g.swap_cols(0, 1)).to eql [[2, 1, 3], [5, 4, 6], [8, 7, 9]]  
+    end 
+  end
 end

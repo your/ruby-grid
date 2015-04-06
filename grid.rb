@@ -380,6 +380,25 @@ class Grid
     end
   end
 
-  ###### 
+
+  ###### Swapping
+  def swap_rows(idx_a, idx_b)
+    row_a = pick_row(idx_a)
+    row_b = pick_row(idx_b)
+    del_row(1, idx_a)
+    add_row(1, idx_a, row_b, -1)
+    del_row(1, idx_b)
+    add_row(1, idx_b, row_a, -1)
+  end
+
+  def swap_cols(idx_a, idx_b)
+    col_a = pick_col(idx_a)
+    col_b = pick_col(idx_b)
+    del_col(1, idx_a)
+    add_col(1, idx_a, col_b, -1)
+    del_col(1, idx_b)
+    add_col(1, idx_b, col_a, -1)
+  end
+
 
 end
