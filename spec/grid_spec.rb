@@ -28,6 +28,13 @@ describe Grid do
     @g = Grid.new(@x, @y)
     expect(@g.grid).to eql []
   end
+  it 'should init a matrix from another' do
+    @x = 2
+    @y = 2
+    test = [[0,1],[2, 3]]
+    @g = Grid.new(@x, @y, test)
+    expect(@g.grid).to eql test
+  end
   it 'should allow given arrays (row or col) to be filled with some given value' do
     expect(@g.fill_array([0, 0, 0], 1)).to eql [1, 1, 1]
   end
@@ -186,9 +193,9 @@ describe Grid do
 
     end
     it 'injection aliases should work' do
-      test = [[6, 6], [9, 9]]
+      test = [[6, 6], [9, 9, 8]]
       expect(@g.inject_row(1, 0, test[0], 0)).to eql [[6, 6], [1, 2], [3, 4]]
-      #expect(@g.inject_col(1, 0, test[1], 0)).to eql [[6, 6], [1, 2], [3, 4]]
+      expect(@g.inject_col(1, 0, test[1], 0)).to eql [[9, 6, 6], [9, 1, 2], [8, 3, 4]]
     end
   end
   describe 'access' do

@@ -8,6 +8,11 @@ class Grid
       @rows = args.first.to_i
       @cols = args[1].to_i
       @grid = init_matrix(@rows, @cols, 0)
+    when 3
+      @rows = args.first.to_i
+      @cols = args[1].to_i
+      val = args[2].to_a
+      @grid = matrix_wrapper(val, 1) 
     else
       raise ArgumentError, 'Argument number (#{args.size}) is wrong'
     end
@@ -244,9 +249,10 @@ class Grid
       count.times {
         j = 0
         @grid.each { |row|
-          if j < @cols
+          if j < @rows
             inj_val = val.class == Array ? val[j] : val
             row.insert(position+i, inj_val)
+            j += 1
           end
         }
       }
@@ -362,17 +368,18 @@ class Grid
 
   # NOTE: not overloading for now
   def inject_col(n_times, from_col, src_array, direction)
-    add_col(n_times, from_col, src_array, direction)
+    case direction
+    when 0
+      add_col(1, from_col, src_array, -1)
+      add_col(n_times-1, from_col, src_array, 0) unless n_times-1 > 0
+    when -1
+      add_col(1, from_col, src_array, 0)
+      add_col(n_times-1, from_col, src_array, -1) unless n_times-1 > 0
+    else
+      raise ArgumentError, 'Argument number (#{args.size}) is wrong'
+    end
   end
 
   ###### 
-
-
-  # @overload replace_row(with_array, at_position)
-  def replace_row(*args)
-  end
-
-  def fill_vacancies
-  end
 
 end
