@@ -1,6 +1,19 @@
 # ruby-grid
 Ruby library to work with matrices of integers. (INCOMPLETE)
 
+## Main Goal
+To manipulate (=play_with) images using Ruby.
+
+So far only basic methods and relative overloads are implemented.
+
+Spec files provided.
+
+## Is it any good?
+Time will tell.
+
+So far, so fun!
+
+## Showcase
 ![loading..](generated/gen_1437814832.png)
 ![loading..](generated/gen_1437827763.png)
 ![loading..](generated/gen_1437830127.png)
@@ -15,17 +28,6 @@ Ruby library to work with matrices of integers. (INCOMPLETE)
 ![loading..](generated/gen_1439120293.png)
 ![loading..](generated/gen_1439120383.png)
 ![loading..](generated/gen_1439120439.png)
-
-
-## Goal
-Mainly designed to manipualate "grids" of pixels that constitute an image.
-
-So far only basic methods and relative overloads are implemented.
-
-Spec files provided.
-
-## Is it any good?
-Time will tell.
 
 ## License: MIT
 
