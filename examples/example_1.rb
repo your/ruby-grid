@@ -6,7 +6,7 @@ require 'chunky_png'
 require_relative '../grid'
 
 # open image and set up grid
-image_0 = ChunkyPNG::Image.from_file('gioconda.png')
+image_0 = ChunkyPNG::Image.from_file('test.png')
 image_1 = image_0.flip_horizontally
 
 g_0 = Grid.new(image_0.height, 0)

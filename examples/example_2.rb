@@ -18,7 +18,7 @@ i = 0; (image.width).times { g.inject_col(1, i, image.column(image.width-1-i), 0
 
 # random swaps
 (rand(0..image.height)).times { g.swap_rows(rand(0..g.rows-1),rand(0..g.rows-1)) }
-(rand(0..image.width)).times { g.swap_cols(rand(0..g.cols-1),rand(0..g.cols-1)) }
+#(rand(0..image.width)).times { g.swap_cols(rand(0..g.cols-1),rand(0..g.cols-1)) }
 
 # swap pixels
 i = 0; (image.width).times { image.replace_column!(i, g.pick_col(i)); i += 1; }
