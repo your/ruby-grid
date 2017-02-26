@@ -1,12 +1,12 @@
 # ruby-grid
-Ruby library to work with matrices of integers. (INCOMPLETE)
+Ruby library to work with matrices of integers.
 
 ## Main Goal
 To manipulate (=play_with) images using Ruby.
 
 So far only basic methods and relative overloads are implemented.
+Tested.
 
-Spec files provided.
 
 ## Is it any good?
 Time will tell.
@@ -14,20 +14,20 @@ Time will tell.
 So far, so fun!
 
 ## Showcase
-![loading..](generated/gen_1437814832.png)
-![loading..](generated/gen_1437827763.png)
-![loading..](generated/gen_1437830127.png)
-![loading..](generated/gen_1437830159.png)
-![loading..](generated/gen_1437833934.png)
-![loading..](generated/gen_1437852758.png)
-![loading..](generated/gen_1437856833.png)
-![loading..](generated/gen_1437857256.png)
-![loading..](generated/gen_1438003273.png)
-![loading..](generated/gen_1438560780.png)
-![loading..](generated/gen_1439120280.png)
-![loading..](generated/gen_1439120293.png)
-![loading..](generated/gen_1439120383.png)
-![loading..](generated/gen_1439120439.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1437814832.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1437827763.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1437830127.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1437830159.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1437833934.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1437852758.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1437856833.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1437857256.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1438003273.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1438560780.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1439120280.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1439120293.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1439120383.png)
+![loading..](https://github.com/your/ruby-grid/raw/master/generated/gen_1439120439.png)
 
 ## License: MIT
 
